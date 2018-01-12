@@ -1,0 +1,36 @@
+version: 2
+
+jobs:
+  build:
+    docker:
+      - image: msvrtan/square:0.2.2
+    working_directory: /var/www
+    parallel: 1
+    steps:
+      - checkout
+
+      - restore_cache:
+          key: cache-v1-{{ checksum "composer.lock" }}
+
+      - run:
+          name: Composer install
+          command: composer install --prefer-dist --no-interaction
+
+      - run:
+          name: Lint all PHP code files
+          command: git diff --name-only --diff-filter=ACMR 42dcfaf697a3cfeb93599fad46d96237ab89f4c5 | grep -E "^(src)\/.*php$" | xargs -n1 php -l 1> /dev/null
+
+      - run:
+          name: Check code standards
+          command: ./vendor/bin/php-cs-fixer fix --dry-run --diff
+
+      - save_cache:
+          key: cache-v1-{{ checksum "composer.lock" }}
+          paths:
+            - /var/www/vendor
+
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - build
