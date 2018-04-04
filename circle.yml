@@ -9,9 +9,6 @@ jobs:
     steps:
       - checkout
 
-      - restore_cache:
-          key: cache-v1-{{ checksum "composer.lock" }}
-
       - run:
           name: Composer install
           command: composer install --prefer-dist --no-interaction
@@ -23,11 +20,6 @@ jobs:
       - run:
           name: Check code standards
           command: ./vendor/bin/php-cs-fixer fix --dry-run --diff
-
-      - save_cache:
-          key: cache-v1-{{ checksum "composer.lock" }}
-          paths:
-            - /var/www/vendor
 
 workflows:
   version: 2
