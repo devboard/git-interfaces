@@ -6,4 +6,5 @@ namespace Git\Commit\Committer;
 
 interface CommitterName
 {
+    public function asString(): string;
 }

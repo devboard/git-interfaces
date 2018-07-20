@@ -6,4 +6,5 @@ namespace Git\Commit\Author;
 
 interface AuthorName
 {
+    public function asString(): string;
 }

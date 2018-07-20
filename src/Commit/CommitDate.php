@@ -6,4 +6,5 @@ namespace Git\Commit;
 
 interface CommitDate
 {
+    public function asString(): string;
 }
