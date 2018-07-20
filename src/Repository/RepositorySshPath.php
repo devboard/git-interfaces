@@ -6,4 +6,5 @@ namespace Git\Repository;
 
 interface RepositorySshPath extends RepositoryPath
 {
+    public function asString(): string;
 }

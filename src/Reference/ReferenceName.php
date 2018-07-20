@@ -8,6 +8,11 @@ interface ReferenceName
 {
     public function getValue(): string;
 
+    public function asString(): string;
+
+    /**
+     * @deprecated Use `asString()`
+     */
     public function __toString(): string;
 
     public function getType(): string;

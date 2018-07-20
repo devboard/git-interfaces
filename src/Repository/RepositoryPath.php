@@ -6,4 +6,5 @@ namespace Git\Repository;
 
 interface RepositoryPath
 {
+    public function asString(): string;
 }

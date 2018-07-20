@@ -6,4 +6,5 @@ namespace Git\Commit;
 
 interface CommitMessage
 {
+    public function asString(): string;
 }

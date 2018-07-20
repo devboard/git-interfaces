@@ -6,4 +6,5 @@ namespace Git\Commit;
 
 interface CommitSha
 {
+    public function asString(): string;
 }
