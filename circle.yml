@@ -14,10 +14,6 @@ jobs:
           command: composer install --prefer-dist --no-interaction
 
       - run:
-          name: Lint all PHP code files
-          command: git diff --name-only --diff-filter=ACMR 42dcfaf697a3cfeb93599fad46d96237ab89f4c5 | grep -E "^(src)\/.*php$" | xargs -n1 php -l 1> /dev/null
-
-      - run:
           name: Check code standards
           command: ./vendor/bin/php-cs-fixer fix --dry-run --diff
 
